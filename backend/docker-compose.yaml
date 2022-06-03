@@ -9,7 +9,8 @@ services:
     image: rolmos/moie-lucy-api
     command: 'npm run start'
     volumes:
-      - "/var/storage:/var/lib/mysql"
+      - "/var/storage/pdf:/storage/pdf"
+      - "/var/storage/uploads:/public/uploads"
     ports:
       - "18210:18210"
     depends_on:
