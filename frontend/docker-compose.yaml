@@ -7,4 +7,4 @@ services:
     logging:
       options:
         max-size: 1g
-    image: 'rolmos/moie-admin:latest'
+    image: 'rolmos/moie-admin:1.0.2'

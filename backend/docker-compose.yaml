@@ -9,8 +9,10 @@ services:
     image: rolmos/moie-lucy-api
     command: 'npm run start'
     volumes:
-      - "/var/storage/pdf:/storage/pdf"
-      - "/var/storage/uploads:/public/uploads"
+      - "./storage/pdf:/storage/pdf"
+      #- "/var/storage/pdf:/storage/pdf"
+      - "./storage/uploads:/public/uploads"
+      #- "/var/storage/uploads:/public/uploads"
     ports:
       - "18210:18210"
     depends_on:
@@ -19,16 +21,16 @@ services:
       - app-tier
     environment:
       PORT: 18210
-      HOST: http://3.85.198.54
+      HOST: http://localhost
       DB_HOST: mysqldb
       DB_PORT: 3306
       DB_USERNAME: 'root'
       DB_PASSWORD: 'Panama2018.'
       DB_DATABASE: 'moie-lucy-v2'
-      SEED_DB: false
+      SEED_DB: null
       DIAN_USER: 1CCC171F7911107313
       DIAN_PASSWORD: 1CCC171F7911107313
-      PUBLIC_URL: http://3.85.198.54
+      PUBLIC_URL: http://localhost:18210
       TZ: 'America/Bogota'
   mysqldb:
     image: mysql
@@ -50,4 +52,5 @@ services:
 #      #- "./scripts/data.sql:/docker-entrypoint-initdb.d/2.sql"
       - "./scripts/moie-v2-qa-bk.sql:/docker-entrypoint-initdb.d/1.sql"
       - "./etc/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf"
-      - "/var/db:/var/lib/mysql"
+      #- "/var/db:/var/lib/mysql"
+      - "./db:/var/lib/mysql"
